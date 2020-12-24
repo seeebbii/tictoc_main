@@ -18,7 +18,7 @@ class LeftPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width * 0.8,
+      width: size.width * 0.78,
       height: size.height,
       decoration: BoxDecoration(),
       child: Column(

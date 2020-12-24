@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tictoc_main/constant/data_json.dart';
 import 'package:tictoc_main/theme/colors.dart';
+import 'package:tictoc_main/widgets/column_social_icon.dart';
+import 'package:tictoc_main/widgets/header_home_page.dart';
+import 'package:tictoc_main/widgets/left_panel.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,46 +30,42 @@ class _HomePageState extends State<HomePage> {
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 25, right: 10, left: 10, bottom: 10),
+                      top: 25, right: 15, left: 15, bottom: 10),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: (){
-                              print("Following");
-                            },
-                            child: Text(
-                              'Following',
-                              style: TextStyle(
-                                color: white.withOpacity(0.5),
-                                fontSize: 16,
+                      HeaderHomePage(),
+                      Flexible(
+                        child: Row(
+                          children: [
+                            LeftPanel(size: size, songName: items[0]['songName'],name: items[0]['name'], caption: items[0]['caption'],),
+                            Expanded(
+                              child: Container(
+                                height: size.height,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: size.height * 0.3,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            getProfile(items[0]['profileImg']),
+                                            getIcons(Icons.thumb_up, items[0]['likes'], 35.0),
+                                            getIcons(Icons.comment, items[0]['comments'], 35.0),
+                                            getIcons(Icons.share, items[0]['shares'], 35.0),
+                                            getAlbum(items[0]['albumImg']),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 5,),
-                          Text(
-                            '|',
-                            style: TextStyle(
-                              color: white.withOpacity(0.5),
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(width: 5,),
-                          InkWell(
-                            onTap: (){
-                              print("For You");
-                            },
-                            child: Text(
-                              'For You',
-                              style: TextStyle(
-                                color: white,
-                                fontSize: 16,
-                              ),
-                            ),
-                          )
-                        ],
+                          ],
+                        ),
                       )
                     ],
                   ),
