@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tictoc_main/theme/colors.dart';
 
 class UploadIcon extends StatelessWidget {
-  const UploadIcon({
+
+  Color mainColor, iconColor;
+  UploadIcon({
     Key key,
+    this.mainColor,
+    this.iconColor
   }) : super(key: key);
 
   @override
@@ -41,10 +45,10 @@ class UploadIcon extends StatelessWidget {
               width: 40,
               height: 35,
               decoration: BoxDecoration(
-                color: white,
+                color: mainColor,
                 borderRadius: BorderRadius.circular(8)
               ),
-              child: Icon(Icons.add),
+              child: Icon(Icons.add, color: iconColor,),
             ),
           )
         ],

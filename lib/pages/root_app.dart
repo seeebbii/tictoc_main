@@ -48,9 +48,23 @@ static List<Widget> screenList = [
       {"icon": Icons.person, "label": "Me", "isIcon": true}
     ];
     return Container(
-      height: 80,
+      height: 65,
       width: double.infinity,
-      decoration: BoxDecoration(color: appBgColor),
+      decoration: pageIndex == 0 ? BoxDecoration(color: appBgColor, boxShadow: [
+        BoxShadow(
+          color: Colors.black,
+          blurRadius: 2.0,
+          spreadRadius: 0.0,
+          offset: Offset(2.0, 2.0), // shadow direction: bottom right
+        )
+      ],) : BoxDecoration(color: white, boxShadow: [
+        BoxShadow(
+          color: Colors.black,
+          blurRadius: 2.0,
+          spreadRadius: 0.0,
+          offset: Offset(2.0, 2.0), // shadow direction: bottom right
+        )
+      ],),
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20,top: 10),
         child: Row(
@@ -65,18 +79,24 @@ static List<Widget> screenList = [
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Icon(
+                  pageIndex == 0 ? Icon(
                     bottomItems[index]['icon'],
                     color: white ,
+                  ) : Icon(
+                    bottomItems[index]['icon'],
+                    color: black ,
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Center(
-                    child: Text(
+                    child: pageIndex == 0 ? Text(
                       bottomItems[index]['label'],
                       style: TextStyle(color: white, fontSize: 10),
-                    ),
+                    ) : Text(
+                      bottomItems[index]['label'],
+                      style: TextStyle(color: black, fontSize: 10),
+                    ) ,
                   )
                 ],
               ),
@@ -85,7 +105,7 @@ static List<Widget> screenList = [
                 onTap: (){
                   selectedTab(index);
                 },
-                child: UploadIcon()
+                child: pageIndex == 0 ? UploadIcon(mainColor: white, iconColor: black,) : UploadIcon(mainColor: black, iconColor: white,)
             );
           }),
         ),
